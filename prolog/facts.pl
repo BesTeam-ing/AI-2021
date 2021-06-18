@@ -1011,9 +1011,9 @@
 	spatialFluent(spF428).
 	swhat(spF428, spRel428).
 	contains(spRel428).
-	hasComponent1(spRel428, po401).
-	hasComponent2(spRel428, po248).
-	hasComponent2(spRel428, po249).
+	%hasComponent1(spRel428, po401).
+	%hasComponent2(spRel428, po248).
+	%hasComponent2(spRel428, po249).
 
 	annotation(spRel428, tok428).
 
@@ -1416,7 +1416,7 @@
 	annotation(prop225,tok2146).
 
 	token(tok3146).
-	hasText(tok3146, "si trova dopo").
+	hasText(tok3146, "dopo").
 	spatialFluent(spF219).
 	swhat(spF219, spRel219).
 	proximity(spRel219).
@@ -2134,7 +2134,7 @@ who(e117, po112).
 who(e117, pa114).
 
 token(tok165).
-hasText(tok165,"non contribuirono alla costruzione").
+hasText(tok165,"opposero alla costruzione").
 action(act118).
 hasSubject(act118, pa115).
 hasSubject(act118, pa116).

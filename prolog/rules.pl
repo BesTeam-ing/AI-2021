@@ -37,8 +37,8 @@ query_when_what(TextWhat, TextAct, TextTime):-
 	hasTemporalEntity1(Trel, E),
 	hasTemporalEntity2(Trel, Time),
 
-	((event(Time), what(Time, Act2), 
-	annotation(Act2, ActTok), 
+	((event(Time), what(Time, Act2),
+	annotation(Act2, ActTok),
     	hasText(ActTok, TextTime));
     
     	(annotation(Time, TimeTok), 
@@ -54,8 +54,8 @@ query_when_who(TextWhat, TextAct, TextTime):-
 	event(E),
 	what(E, Act1),
 	who(E, Po),
-    	annotation(Act1, Act1Tok), 
-    	hasText(Act1Tok,TextAct),
+    annotation(Act1, Act1Tok),
+    hasText(Act1Tok,TextAct),
 
 	when(E, Trel),
 	during(Trel),
@@ -68,6 +68,10 @@ query_when_who(TextWhat, TextAct, TextTime):-
     
     	(annotation(Time, TimeTok), 
     	hasText(TimeTok,TextTime))).
+
+query_when(TextWhat, TextAct, TextTime):-
+    query_when_who(TextWhat, TextAct, TextTime);
+    query_when_what(TextWhat, TextAct, TextTime).
 
 
 query_where(Object, TxtRel, TxtObj):-
