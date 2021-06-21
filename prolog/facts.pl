@@ -298,7 +298,7 @@
 	annotation(po212,tok225).
 
 	token(tok226).
-	hasText(tok226, "ai lati").
+	hasText(tok226, "ai lati del").
 	spatialFluent(spF22).
 	swhat(spF22, spRel22).
 	proximity(spRel22).
@@ -876,7 +876,7 @@
 
 
 	token(tok288).
-	hasText(tok288, "Sulla").
+	hasText(tok288, "sulla").
 	spatialFluent(spF210).
 	swhat(spF210, spRel210).
 	over(spRel210).
@@ -937,7 +937,7 @@
 	who(e213, pa23).
 
 	token(tok295).
-	hasText(tok295, "Scalinata").
+	hasText(tok295, "scalinata").
 	physicalObject(po247).
 	annotation(po247, tok295).
 
@@ -961,7 +961,7 @@
 
 
 	token(tok298).
-	hasText(tok298, "di fronte").
+	hasText(tok298, "di fronte alla").
 	spatialFluent(spF212).
 	swhat(spF212, spRel212).
 	proximity(spRel212).
@@ -1155,7 +1155,7 @@
 
 
 	token(tok2116).
-	hasText(tok2116, "di fronte").
+	hasText(tok2116, "di fronte alla").
 	spatialFluent(spF215).
 	swhat(spF215, spRel215).
 	proximity(spRel215).
@@ -1299,7 +1299,7 @@
 	annotation(po262, tok2130).
 
 	token(tok2131).
-	hasText(tok2131, "sul retro").
+	hasText(tok2131, "sul retro della").
 	spatialFluent(spF216).
 	swhat(spF216, spRel216).
 	proximity(spRel216).
@@ -1365,7 +1365,7 @@
 	annotation(po264, tok2138).
 
 	token(tok2139).
-	hasText(tok2139, "a sinistra").
+	hasText(tok2139, "a sinistra del").
 	spatialFluent(spF218).
 	swhat(spF218, spRel218).
 	left(spRel218).
@@ -1416,7 +1416,7 @@
 	annotation(prop225,tok2146).
 
 	token(tok3146).
-	hasText(tok3146, "dopo").
+	hasText(tok3146, "dopo la").
 	spatialFluent(spF219).
 	swhat(spF219, spRel219).
 	proximity(spRel219).
@@ -1511,7 +1511,7 @@
 	annotation(po270, tok2157).
 
 	token(tok2158).
-	hasText(tok2158, "al centro").
+	hasText(tok2158, "al centro della").
 	spatialFluent(spF220).
 	swhat(spF220, spRel220).
 	contains(spRel220).
@@ -1549,7 +1549,7 @@
 
 % APPARTAMENTO NUOVO
 	token(tok2163).
-	hasText(tok2163, "a destra").
+	hasText(tok2163, "a destra della").
 	spatialFluent(spF221).
 	swhat(spF221, spRel221).
 	right(spRel221).
@@ -1558,7 +1558,7 @@
 	annotation(spRel221, tok2163).
 
 	token(tok3163).
-	hasText(tok3163, "a sinistra").
+	hasText(tok3163, "a sinistra del").
 	spatialFluent(spF321).
 	swhat(spF321, spRel321).
 	left(spRel321).
@@ -1568,7 +1568,7 @@
 
 % APPARTAMENTO VECCHIO
 	token(tok2164).
-	hasText(tok2164, "a sinistra").
+	hasText(tok2164, "a sinistra della").
 	spatialFluent(spF222).
 	swhat(spF222, spRel222).
 	left(spRel222).
@@ -1577,7 +1577,7 @@
 	annotation(spRel222, tok2164).
 
 	token(tok3164).
-	hasText(tok3164, "a destra").
+	hasText(tok3164, "a destra del").
 	spatialFluent(spF322).
 	swhat(spF322, spRel322).
 	right(spRel322).
