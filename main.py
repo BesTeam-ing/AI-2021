@@ -1,19 +1,23 @@
+import random
+import signal
+import sys
+
+import speech_recognition as sr
+
+# Crea una istanza del recognizer
+recognizer_instance = sr.Recognizer()
+
+import nltk
+import spacy
+from PyQt5.QtCore import Qt as qtC
+from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QLineEdit, \
     QListWidget, QListWidgetItem, QAbstractItemView, QMessageBox
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtCore import Qt as qtC
-
 from pyswip import Prolog
-import spacy
-import nltk
-import random
 
-import sys
-import signal
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
 # TODO BONUS: sistemare problema lista partecipanti [PROLOG]
-# TODO BONUS: sintetizzatore vocale
 
 prolog = Prolog()
 prolog.consult('prolog/facts.pl')
@@ -126,8 +130,12 @@ class App(QMainWindow):
 
         # Button send message
         self.button = QPushButton('Invia', self)
-        self.button.move(515, 250)
+        self.button.move(515, 240)
         self.button.resize(75, 32)
+
+        self.button_audio = QPushButton('Parla', self)
+        self.button_audio.move(515, 270)
+        self.button_audio.resize(75, 32)
 
         # Logger
         self.list_widget = QListWidget(self)
@@ -136,6 +144,7 @@ class App(QMainWindow):
 
         # connect button to function on_click
         self.button.clicked.connect(self.on_click)
+        self.button_audio.clicked.connect(self.on_click_audio)
 
         self.show()
 
@@ -193,6 +202,21 @@ class App(QMainWindow):
                 QAbstractItemView.scrollToBottom(self.list_widget)
 
             self.textbox.setText("")
+
+    @pyqtSlot()
+    def on_click_audio(self):
+        with sr.Microphone() as source:
+            recognizer_instance.adjust_for_ambient_noise(source)
+            print("Sono in ascolto... parla pure!")
+            audio = recognizer_instance.listen(source)
+            print("Ok! sto ora elaborando il messaggio!")
+        try:
+            text = recognizer_instance.recognize_google(audio, language="it-IT")
+            print("Google ha capito: \n", text)
+            self.textbox.setText(text)
+
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
