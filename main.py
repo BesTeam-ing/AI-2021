@@ -152,7 +152,6 @@ class App(QMainWindow):
     @pyqtSlot()
     def on_click(self):
         question = self.textbox.text().lower()
-        response = ""
 
         if question == "":
             QMessageBox.about(self, "Error", "La domanda non può essere vuota!")
@@ -170,46 +169,39 @@ class App(QMainWindow):
                 result = resolve_query(nlp_text, 'query_who_what(X,Y,Z)')
                 if result != "":
                     response = random.choice(who_answer) + " " + result
-                    self.list_widget.addItem(QListWidgetItem('[DONATO] {verb} {who}'.format(verb=random.choice(who_answer), who=result)))
+                    self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                     QAbstractItemView.scrollToBottom(self.list_widget)
                 else:
                     response = random.choice(no_answer)
-                    self.list_widget.addItem(
-                        QListWidgetItem('[DONATO] {result}'.format(result=random.choice(no_answer))))
+                    self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                     QAbstractItemView.scrollToBottom(self.list_widget)
 
             elif "quando" in nlp_arr:
                 result = resolve_query(nlp_text, 'query_when(Z,Y,X)')
                 if result != "":
                     response = random.choice(when_answer) + " " + result
-                    self.list_widget.addItem(
-                        QListWidgetItem('[DONATO] {verb} {when}'.format(verb=random.choice(when_answer), when=result)))
+                    self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                     QAbstractItemView.scrollToBottom(self.list_widget)
                 else:
                     response = random.choice(no_answer)
-                    self.list_widget.addItem(
-                        QListWidgetItem('[DONATO] {result}'.format(result=random.choice(no_answer))))
+                    self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                     QAbstractItemView.scrollToBottom(self.list_widget)
 
             elif "dove" in nlp_arr:
                 result = resolve_query(nlp_text, 'query_where(X,Y,Z)', 'where')
                 if result != "":
                     response = result
-                    self.list_widget.addItem(
-                        QListWidgetItem('[DONATO] {result}'.format(result=result)))
+                    self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                     QAbstractItemView.scrollToBottom(self.list_widget)
                 else:
                     response = random.choice(no_answer)
-                    self.list_widget.addItem(
-                        QListWidgetItem('[DONATO] {result}'.format(result=random.choice(no_answer))))
+                    self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                     QAbstractItemView.scrollToBottom(self.list_widget)
 
             else:
                 response = "Non ho capito, puoi ripetere?"
-                self.list_widget.addItem(
-                    QListWidgetItem('[DONATO] Non ho capito, puoi ripetere?'))
+                self.list_widget.addItem(QListWidgetItem('[DONATO] ' + response))
                 QAbstractItemView.scrollToBottom(self.list_widget)
-
 
             self.textbox.setText("")
             os.system("say " + response)
