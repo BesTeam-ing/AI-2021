@@ -1,3 +1,4 @@
+import os
 import random
 import signal
 import sys
@@ -151,6 +152,7 @@ class App(QMainWindow):
     @pyqtSlot()
     def on_click(self):
         question = self.textbox.text().lower()
+        response = ""
 
         if question == "":
             QMessageBox.about(self, "Error", "La domanda non può essere vuota!")
@@ -167,9 +169,11 @@ class App(QMainWindow):
             if "chi" in nlp_arr:
                 result = resolve_query(nlp_text, 'query_who_what(X,Y,Z)')
                 if result != "":
+                    response = random.choice(who_answer) + " " + result
                     self.list_widget.addItem(QListWidgetItem('[DONATO] {verb} {who}'.format(verb=random.choice(who_answer), who=result)))
                     QAbstractItemView.scrollToBottom(self.list_widget)
                 else:
+                    response = random.choice(no_answer)
                     self.list_widget.addItem(
                         QListWidgetItem('[DONATO] {result}'.format(result=random.choice(no_answer))))
                     QAbstractItemView.scrollToBottom(self.list_widget)
@@ -177,10 +181,12 @@ class App(QMainWindow):
             elif "quando" in nlp_arr:
                 result = resolve_query(nlp_text, 'query_when(Z,Y,X)')
                 if result != "":
+                    response = random.choice(when_answer) + " " + result
                     self.list_widget.addItem(
                         QListWidgetItem('[DONATO] {verb} {when}'.format(verb=random.choice(when_answer), when=result)))
                     QAbstractItemView.scrollToBottom(self.list_widget)
                 else:
+                    response = random.choice(no_answer)
                     self.list_widget.addItem(
                         QListWidgetItem('[DONATO] {result}'.format(result=random.choice(no_answer))))
                     QAbstractItemView.scrollToBottom(self.list_widget)
@@ -188,27 +194,38 @@ class App(QMainWindow):
             elif "dove" in nlp_arr:
                 result = resolve_query(nlp_text, 'query_where(X,Y,Z)', 'where')
                 if result != "":
+                    response = result
                     self.list_widget.addItem(
                         QListWidgetItem('[DONATO] {result}'.format(result=result)))
                     QAbstractItemView.scrollToBottom(self.list_widget)
                 else:
+                    response = random.choice(no_answer)
                     self.list_widget.addItem(
                         QListWidgetItem('[DONATO] {result}'.format(result=random.choice(no_answer))))
                     QAbstractItemView.scrollToBottom(self.list_widget)
 
             else:
+                response = "Non ho capito, puoi ripetere?"
                 self.list_widget.addItem(
                     QListWidgetItem('[DONATO] Non ho capito, puoi ripetere?'))
                 QAbstractItemView.scrollToBottom(self.list_widget)
 
+
             self.textbox.setText("")
+            os.system("say " + response)
 
     @pyqtSlot()
     def on_click_audio(self):
         with sr.Microphone() as source:
             recognizer_instance.adjust_for_ambient_noise(source)
+            self.list_widget.addItem(
+                QListWidgetItem('[DONATO] Sono in ascolto... parla pure!'))
+            QAbstractItemView.scrollToBottom(self.list_widget)
             print("Sono in ascolto... parla pure!")
             audio = recognizer_instance.listen(source)
+            self.list_widget.addItem(
+                QListWidgetItem('[DONATO] Ok! sto ora elaborando il messaggio!'))
+            QAbstractItemView.scrollToBottom(self.list_widget)
             print("Ok! sto ora elaborando il messaggio!")
         try:
             text = recognizer_instance.recognize_google(audio, language="it-IT")
