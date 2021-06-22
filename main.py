@@ -210,13 +210,13 @@ class App(QMainWindow):
     def on_click_audio(self):
         with sr.Microphone() as source:
             recognizer_instance.adjust_for_ambient_noise(source)
-            self.list_widget.addItem(
-                QListWidgetItem('[DONATO] Sono in ascolto... parla pure!'))
+            #self.list_widget.addItem(
+            #    QListWidgetItem('[DONATO] Sono in ascolto... parla pure!'))
             QAbstractItemView.scrollToBottom(self.list_widget)
             print("Sono in ascolto... parla pure!")
             audio = recognizer_instance.listen(source)
-            self.list_widget.addItem(
-                QListWidgetItem('[DONATO] Ok! sto ora elaborando il messaggio!'))
+            #self.list_widget.addItem(
+            #    QListWidgetItem('[DONATO] Ok! sto ora elaborando il messaggio!'))
             QAbstractItemView.scrollToBottom(self.list_widget)
             print("Ok! sto ora elaborando il messaggio!")
         try:
